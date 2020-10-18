@@ -1,0 +1,16 @@
+E:\WorkSpace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\bin\Release\netstandard2.0\LitJson.deps.json
+E:\WorkSpace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\bin\Release\netstandard2.0\LitJson.dll
+E:\WorkSpace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\bin\Release\netstandard2.0\LitJson.pdb
+E:\WorkSpace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\obj\Release\netstandard2.0\LitJson.csproj.CoreCompileInputs.cache
+E:\WorkSpace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\obj\Release\netstandard2.0\LitJson.AssemblyInfoInputs.cache
+E:\WorkSpace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\obj\Release\netstandard2.0\LitJson.AssemblyInfo.cs
+E:\WorkSpace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\obj\Release\netstandard2.0\LitJson.dll
+E:\WorkSpace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\obj\Release\netstandard2.0\LitJson.pdb
+D:\Workplace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\bin\Release\netstandard2.0\LitJson.deps.json
+D:\Workplace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\bin\Release\netstandard2.0\LitJson.dll
+D:\Workplace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\bin\Release\netstandard2.0\LitJson.pdb
+D:\Workplace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\obj\Release\netstandard2.0\LitJson.csprojAssemblyReference.cache
+D:\Workplace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\obj\Release\netstandard2.0\LitJson.AssemblyInfoInputs.cache
+D:\Workplace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\obj\Release\netstandard2.0\LitJson.AssemblyInfo.cs
+D:\Workplace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\obj\Release\netstandard2.0\LitJson.dll
+D:\Workplace\ShaderToyOffline\ShaderToyOfflineWinform\LitJson\obj\Release\netstandard2.0\LitJson.pdb

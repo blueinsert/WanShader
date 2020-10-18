@@ -1,0 +1,357 @@
+{
+  "userName": "bluebean",
+  "date": "2020-01-09T02:25:12.900Z",
+  "numShaders": 36,
+  "shaders": [
+    {
+      "ver": "0.1",
+      "info": {
+        "id": "3tK3zw",
+        "date": "0",
+        "viewed": 0,
+        "name": "Test_1channel_0buff",
+        "description": "test",
+        "likes": 0,
+        "published": "Private",
+        "tags": [
+          "test"
+        ]
+      },
+      "renderpass": [
+        {
+          "inputs": [
+            {
+              "id": "XdX3Rn",
+              "filepath": "/media/a/52d2a8f514c4fd2d9866587f4d7b2a5bfa1a11a0e772077d7682deb8b3b517e5.jpg",
+              "type": "texture",
+              "channel": 0,
+              "sampler": {
+                "filter": "mipmap",
+                "wrap": "repeat",
+                "vflip": "true",
+                "srgb": "false",
+                "internal": "byte"
+              },
+              "published": 1
+            }
+          ],
+          "outputs": [
+            {
+              "id": "4dfGRr",
+              "channel": 0
+            }
+          ],
+          "code": "void mainImage( out vec4 fragColor, in vec2 fragCoord )\n{\n    fragColor = texture(iChannel0,fragCoord/iResolution.xy);\n}",
+          "name": "Image",
+          "description": "",
+          "type": "image"
+        }
+      ]
+    },
+    {
+      "ver": "0.1",
+      "info": {
+        "id": "3lK3zw",
+        "date": "0",
+        "viewed": 0,
+        "name": "Test_1channel_1buff",
+        "description": "test",
+        "likes": 0,
+        "published": "Private",
+        "tags": [
+          "test"
+        ]
+      },
+      "renderpass": [
+        {
+          "inputs": [
+            {
+              "id": "4dXGR8",
+              "filepath": "/media/previz/buffer00.png",
+              "type": "buffer",
+              "channel": 0,
+              "sampler": {
+                "filter": "linear",
+                "wrap": "clamp",
+                "vflip": "true",
+                "srgb": "false",
+                "internal": "byte"
+              },
+              "published": 1
+            }
+          ],
+          "outputs": [
+            {
+              "id": "4dfGRr",
+              "channel": 0
+            }
+          ],
+          "code": "void mainImage( out vec4 fragColor, in vec2 fragCoord )\n{\n    fragColor = texture(iChannel0,fragCoord/iResolution.xy);\n}",
+          "name": "Image",
+          "description": "",
+          "type": "image"
+        },
+        {
+          "inputs": [],
+          "outputs": [
+            {
+              "id": "4dXGR8",
+              "channel": 0
+            }
+          ],
+          "code": "void mainImage( out vec4 fragColor, in vec2 fragCoord )\n{\n    fragColor = vec4(0.0,0.0,1.0,1.0);\n}",
+          "name": "Buf A",
+          "description": "",
+          "type": "buffer"
+        }
+      ]
+    },
+    {
+      "ver": "0.1",
+      "info": {
+        "id": "WtK3zw",
+        "date": "0",
+        "viewed": 0,
+        "name": "Test_2channel_0buff",
+        "description": "test",
+        "likes": 0,
+        "published": "Private",
+        "tags": [
+          "test"
+        ]
+      },
+      "renderpass": [
+        {
+          "inputs": [
+            {
+              "id": "XdX3Rn",
+              "filepath": "/media/a/52d2a8f514c4fd2d9866587f4d7b2a5bfa1a11a0e772077d7682deb8b3b517e5.jpg",
+              "type": "texture",
+              "channel": 0,
+              "sampler": {
+                "filter": "mipmap",
+                "wrap": "repeat",
+                "vflip": "true",
+                "srgb": "false",
+                "internal": "byte"
+              },
+              "published": 1
+            },
+            {
+              "id": "4dX3Rn",
+              "filepath": "/media/a/bd6464771e47eed832c5eb2cd85cdc0bfc697786b903bfd30f890f9d4fc36657.jpg",
+              "type": "texture",
+              "channel": 1,
+              "sampler": {
+                "filter": "mipmap",
+                "wrap": "repeat",
+                "vflip": "true",
+                "srgb": "false",
+                "internal": "byte"
+              },
+              "published": 1
+            }
+          ],
+          "outputs": [
+            {
+              "id": "4dfGRr",
+              "channel": 0
+            }
+          ],
+          "code": "void mainImage( out vec4 fragColor, in vec2 fragCoord )\n{\n    fragColor = texture(iChannel0,fragCoord/iResolution.xy);\n}",
+          "name": "Image",
+          "description": "",
+          "type": "image"
+        }
+      ]
+    },
+    {
+      "ver": "0.1",
+      "info": {
+        "id": "WlK3zw",
+        "date": "0",
+        "viewed": 0,
+        "name": "Test_2channel_2buff",
+        "description": "test",
+        "likes": 0,
+        "published": "Private",
+        "tags": [
+          "test"
+        ]
+      },
+      "renderpass": [
+        {
+          "inputs": [
+            {
+              "id": "4dXGR8",
+              "filepath": "/media/previz/buffer00.png",
+              "type": "buffer",
+              "channel": 0,
+              "sampler": {
+                "filter": "linear",
+                "wrap": "clamp",
+                "vflip": "true",
+                "srgb": "false",
+                "internal": "byte"
+              },
+              "published": 1
+            },
+            {
+              "id": "XsXGR8",
+              "filepath": "/media/previz/buffer01.png",
+              "type": "buffer",
+              "channel": 1,
+              "sampler": {
+                "filter": "linear",
+                "wrap": "clamp",
+                "vflip": "true",
+                "srgb": "false",
+                "internal": "byte"
+              },
+              "published": 1
+            }
+          ],
+          "outputs": [
+            {
+              "id": "4dfGRr",
+              "channel": 0
+            }
+          ],
+          "code": "void mainImage( out vec4 fragColor, in vec2 fragCoord )\n{\n   fragColor = texture(iChannel0,fragCoord/iResolution.xy);\n}",
+          "name": "Image",
+          "description": "",
+          "type": "image"
+        },
+        {
+          "inputs": [],
+          "outputs": [
+            {
+              "id": "4dXGR8",
+              "channel": 0
+            }
+          ],
+          "code": "void mainImage( out vec4 fragColor, in vec2 fragCoord )\n{\n    fragColor = vec4(1.0,0.0,0.0,1.0);\n}",
+          "name": "Buf A",
+          "description": "",
+          "type": "buffer"
+        },
+        {
+          "inputs": [
+            {
+              "id": "4dXGR8",
+              "filepath": "/media/previz/buffer00.png",
+              "type": "buffer",
+              "channel": 0,
+              "sampler": {
+                "filter": "linear",
+                "wrap": "clamp",
+                "vflip": "true",
+                "srgb": "false",
+                "internal": "byte"
+              },
+              "published": 1
+            },
+            {
+              "id": "XsXGR8",
+              "filepath": "/media/previz/buffer01.png",
+              "type": "buffer",
+              "channel": 1,
+              "sampler": {
+                "filter": "linear",
+                "wrap": "clamp",
+                "vflip": "true",
+                "srgb": "false",
+                "internal": "byte"
+              },
+              "published": 1
+            }
+          ],
+          "outputs": [
+            {
+              "id": "XsXGR8",
+              "channel": 0
+            }
+          ],
+          "code": "void mainImage( out vec4 fragColor, in vec2 fragCoord )\n{\n    fragColor = vec4(0.0,1.0,0.0,1.0);\n}",
+          "name": "Buf B",
+          "description": "",
+          "type": "buffer"
+        }
+      ]
+    },
+    {
+      "ver": "0.1",
+      "info": {
+        "id": "tlt3Rs",
+        "date": "0",
+        "viewed": 0,
+        "name": "Antialiase Planetary Ring",
+        "description": "索引反锯齿行星环",
+        "likes": 0,
+        "published": "Private",
+        "tags": [
+          "math",
+          "indexantialiase"
+        ]
+      },
+      "renderpass": [
+        {
+          "inputs": [
+            {
+              "id": "4dXGR8",
+              "filepath": "/media/previz/buffer00.png",
+              "type": "buffer",
+              "channel": 0,
+              "sampler": {
+                "filter": "linear",
+                "wrap": "clamp",
+                "vflip": "true",
+                "srgb": "false",
+                "internal": "byte"
+              },
+              "published": 1
+            }
+          ],
+          "outputs": [
+            {
+              "id": "4dfGRr",
+              "channel": 0
+            }
+          ],
+          "code": "#define TableSize 256\n\nconst float inner = 4.0;\nconst float outer = 9.0;\nconst float transition = 0.5;\nconst float low = 0.1;\nconst float high = 0.9;\n\n/*\nvec3 ringColorAntiliase(vec2 pos,float spotSize,float inner,float outer){\n    float R0,R1;\n    int I0,I1;\n    float weight;\n    R0 = sqrt(pos.x*pos.x+pos.y*pos.y)-0.5*spotSize;\n    R1 = R0+spotSize;\n    R0 = max(R0,0.0);\n    I0 = int(R0*float(TableSize-1)/outer);\n    I1 = int(R1*float(TableSize-1)/outer);\n    if(I0==I1)\n        I1++;\n    if(I0>=TableSize)\n        return vec3(0.0);\n    if(I1>=TableSize){\n        weight = float(TableSize-I0)/float(I1-I0);\n        I1 = TableSize - 1;\n    }else\n        weight = 1.0;\n    return weight*(integralTable[I1]-integralTable[I0])/float(I1-I0);\n}\n*/\n\nvec3 ringColor(vec2 pos, float inner,float outer){\n    \n    float R;\n    int I;\n    R = sqrt(pos.x*pos.x+pos.y*pos.y);\n  \n    float x = R/outer;\n    \n    return texelFetch( iChannel0, ivec2(int(x*iResolution.x-0.5),0),0).xyz;\n}\n\nvoid mainImage( out vec4 fragColor, in vec2 fragCoord )\n{\n    ivec2 ipx = ivec2(fragCoord-0.5);\n    \n    vec2 pos = (fragCoord*2.0-iResolution.xy)/iResolution.y;\n    pos *= 9.0;\n    //vec2 mouse = 2.0*(iMouse.xy / iResolution.xy - vec2(0.5,0.5));\n    //float scale = 9.0;\n    //vec2 pos = (p+vec2(mouse.x*10.0,0.0))*scale;\n    //float width = 2.0/iResolution.y*scale;\n    //float spotSize = sqrt(width*width + width*width)/2.0;\n    \n    vec3 col;\n    col = ringColor(pos,inner,outer);\n       \n    fragColor = vec4(col,1.0);\n}",
+          "name": "Image",
+          "description": "",
+          "type": "image"
+        },
+        {
+          "inputs": [
+            {
+              "id": "4dXGR8",
+              "filepath": "/media/previz/buffer00.png",
+              "type": "buffer",
+              "channel": 0,
+              "sampler": {
+                "filter": "linear",
+                "wrap": "clamp",
+                "vflip": "true",
+                "srgb": "false",
+                "internal": "byte"
+              },
+              "published": 1
+            }
+          ],
+          "outputs": [
+            {
+              "id": "4dXGR8",
+              "channel": 0
+            }
+          ],
+          "code": "//这个buff用来在ichanell0制作一张噪声纹理图形的积分图\n\nconst float inner = 4.0;\nconst float outer = 9.0;\nconst float transition = 0.5;\nconst float low = 0.1;\nconst float high = 0.9;\n\n//作为基础的随机函数\nfloat hash21(vec2 p)\n{\n\treturn fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);\n}\n\n//基于晶格的值噪声\nfloat value_noise(vec2 p){\n    vec2 i = floor( p );\n    vec2 f = fract( p );\n\t\n    // Ease Curve 平滑曲线\n    vec2 u = f*f*f*(6.0*f*f - 15.0*f + 10.0);\n    \n    return mix(mix(hash21(i+vec2(0.0,0.0)),hash21(i+vec2(1.0,0.0)),u.x),\n               mix(hash21(i+vec2(0.0,1.0)),hash21(i+vec2(1.0,1.0)),u.x),\n               u.y);\n}\n\n//基于值噪声的分形噪声\nfloat fractal_noise(in vec2 p)\n{\n\tp *= 5.0;\n    mat2 m = mat2( 1.6,  1.2, -1.2,  1.6 );\n\tfloat f  = 0.5000*value_noise(p); p = m*p;\n\tf += 0.2500*value_noise(p); p = m*p;\n\tf += 0.1250*value_noise(p); p = m*p;\n\tf += 0.0625*value_noise(p); p = m*p;\n    \n    return f;\n}\n\nvec4 loadValue( in ivec2 re )\n{\n    return texelFetch( iChannel0, re, 0 );\n}\nvoid storeValue( in ivec2 re, in vec4 va, inout vec4 fragColor, in ivec2 p )\n{\n    fragColor = (p==re) ? va : fragColor;\n}\nvoid storeValue( in ivec4 re, in vec4 va, inout vec4 fragColor, in ivec2 p )\n{\n    fragColor = ( p.x>=re.x && p.y>=re.y && p.x<=re.z && p.y<=re.w ) ? va : fragColor;\n}\n\nfloat makeRandomGray(float x, float inner,float outer,float transition,float low,float high)\n{\n    float R;\n    float A;\n    float F;\n    \n    R = outer*x;//[0,outer]\n    if(R<=inner)\n        A = 0.0;\n    else if(R<inner+transition){\n        A = (R-inner)/transition;\n        A *= A*(3.0-2.0*A);\n    }else if(R>outer-transition){\n        A = (outer-R)/transition;\n        A *= A*(3.0-2.0*A);\n    }else\n        A = 1.0;\n    F = fractal_noise(vec2(R,0.0));\n      \n    F = smoothstep(low,high,F)*A;\n       \n    return F;\n}\n\nvoid mainImage( out vec4 fragColor, in vec2 fragCoord )\n{    \n     //ivec2 ipx = ivec2(fragCoord-0.5);\n     vec2 p = fragCoord/iResolution.xy;\n     bool initialized = loadValue(ivec2(0,0)).x != 0.0;\n     if(initialized){\n        return;\n    }\n    float gray = makeRandomGray(p.x, inner, outer,transition,low,high);\n    fragColor = vec4(vec3(gray),1.0);\n}",
+          "name": "Buf A",
+          "description": "",
+          "type": "buffer"
+        }
+      ]
+    }
+  ]
+}
