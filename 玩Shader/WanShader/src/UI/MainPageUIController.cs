@@ -17,6 +17,9 @@ namespace bluebean.ShaderToyOffline
         public MainPageUIController()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.
+            SetStyle(ControlStyles.DoubleBuffer, true); // 双缓冲
         }
 
         private void OnLoad(object sender, EventArgs e)
@@ -87,18 +90,24 @@ namespace bluebean.ShaderToyOffline
             }   
         }
 
-        private void OnItemRemoved(object sender, ControlEventArgs e)
-        {
-            //flowLayoutPanel1.VerticalScroll.Value = m_oldScrollValue;
-           // flowLayoutPanel1.Refresh();
-        }
-
         private void OnNewButtonClick(object sender, EventArgs e)
         {
             ShaderData newShaderData = new ShaderData();
             DetailPageUIController detailPageForm = new DetailPageUIController(newShaderData, true);
             detailPageForm.Show();
         }
- 
+
+        private void OnNeedRePaint(object sender, PaintEventArgs e)
+        {
+            Console.WriteLine("MainPageUIController:OnNeedRePaint");
+            foreach(var listItem in m_shaderUICtrlList)
+            {
+                if ((listItem.Location.Y > 0 && listItem.Location.Y < flowLayoutPanel1.Height)
+                    || (listItem.Location.Y + listItem.Height > 0 && listItem.Location.Y + listItem.Height < flowLayoutPanel1.Height))
+                {
+                    listItem.OnNeedRePaint(sender, e);
+                }  
+            }
+        }
     }
 }

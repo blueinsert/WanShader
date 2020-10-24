@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Workplace\\玩Shader\\玩Shader\\LitJson\\LitJson.csproj": {}
+    "D:\\WorkSpace\\玩Shader\\玩Shader\\LitJson\\LitJson.csproj": {}
   },
   "projects": {
-    "D:\\Workplace\\玩Shader\\玩Shader\\LitJson\\LitJson.csproj": {
+    "D:\\WorkSpace\\玩Shader\\玩Shader\\LitJson\\LitJson.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Workplace\\玩Shader\\玩Shader\\LitJson\\LitJson.csproj",
+        "projectUniqueName": "D:\\WorkSpace\\玩Shader\\玩Shader\\LitJson\\LitJson.csproj",
         "projectName": "LitJson",
-        "projectPath": "D:\\Workplace\\玩Shader\\玩Shader\\LitJson\\LitJson.csproj",
+        "projectPath": "D:\\WorkSpace\\玩Shader\\玩Shader\\LitJson\\LitJson.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\Workplace\\玩Shader\\玩Shader\\LitJson\\obj\\",
+        "outputPath": "D:\\WorkSpace\\玩Shader\\玩Shader\\LitJson\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",

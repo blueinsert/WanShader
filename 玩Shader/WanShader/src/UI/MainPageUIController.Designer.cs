@@ -42,7 +42,7 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(776, 426);
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.OnScroll);
-            this.flowLayoutPanel1.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.OnItemRemoved);
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.OnNeedRePaint);
             // 
             // addNewButton
             // 

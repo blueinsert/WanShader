@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -213,7 +214,7 @@ namespace bluebean.ShaderToyOffline
         {
             SetShaderInfo();
             SetEditArea();
-            m_render = new ShaderToyStyleRender(openGLControl1.OpenGL);
+            m_render = new ShaderToyStyleRender(openGLControl1.OpenGL,new Vec2(openGLControl1.Width,openGLControl1.Height));
             CompileShader();
             StartTickRender();
             SetInputChannelPictures();
@@ -269,6 +270,25 @@ namespace bluebean.ShaderToyOffline
                 renderPass.code = textEditor.Text;
             }
             CompileShader();
+        }
+
+        private void OnExportImgButtonClick(object sender, EventArgs e)
+        {
+            Color[] colors;
+            int width;
+            int height;
+            m_render.ReadTexture(out colors, out width, out height);
+            Console.WriteLine(colors);
+            Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format24bppRgb);
+            for(int i = 0; i < height; i++)
+            {
+                for(int j = 0; j < width; j++)
+                {
+                    Color c = colors[i * width + j];
+                    bitmap.SetPixel(j, height - i-1, c);
+                }
+            }
+            bitmap.Save("./Assets/save.png");
         }
 
         private void OnFormClosed(object sender, FormClosedEventArgs e)
@@ -437,5 +457,6 @@ namespace bluebean.ShaderToyOffline
         }
         #endregion
 
+       
     }
 }

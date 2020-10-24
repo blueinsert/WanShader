@@ -1,7 +1,9 @@
-bugs
-1.mainUI shader列表上下滑动时，刷新不正确
+﻿bugs
+1.mainUI shader列表上下滑动时，刷新不正确，闪烁
+改成用图片显示，只有当鼠标在上面时，切换到用openGL实时绘制
 2.多个shaderToyStyleRender之间貌似有相互影响，一个dispose后，另一个也会变黑
 3.错误行号显示不正确
 
 features:
 1.添加和删除renderPass的UI显示优化
+2.显示openGLCanvas的size

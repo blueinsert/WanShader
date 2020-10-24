@@ -20,6 +20,7 @@ namespace bluebean.ShaderToyOffline
         public ShaderData m_shaderData;
 
         private Timer m_timer;
+        private float m_iTimeDelta = 0;
         private float m_iTime = 0;
 
         public ShaderListItemUIController()
@@ -40,7 +41,7 @@ namespace bluebean.ShaderToyOffline
             }
             m_shaderData = shaderData;
             nameText.Text = m_shaderData.info.name;
-            m_render = new ShaderToyStyleRender(glCanvas.OpenGL);
+            m_render = new ShaderToyStyleRender(glCanvas.OpenGL,new Vec2(glCanvas.Width,glCanvas.Height));
             m_render.CompileShader(m_shaderData.Clone());
             glCanvas.DoRender();
         }
@@ -58,9 +59,7 @@ namespace bluebean.ShaderToyOffline
         {
             if (m_render != null)
             {
-                float deltaTime = 0.033f * 4;
-                m_iTime += deltaTime;
-                m_render.Render(m_iTime, deltaTime, new Vec2(glCanvas.Width,glCanvas.Height),new Vec3(0,0,0));
+                m_render.Render(m_iTime, m_iTimeDelta, new Vec2(glCanvas.Width,glCanvas.Height),new Vec3(0,0,0));
             }
         }
 
@@ -69,6 +68,8 @@ namespace bluebean.ShaderToyOffline
             m_timer = new Timer();
             m_timer.Interval = 33;
             m_timer.Tick += (object sender1, EventArgs e1) => {
+                m_iTimeDelta = 0.033f * 4;
+                m_iTime += m_iTimeDelta;
                 glCanvas.DoRender();
             };
             m_timer.Start();
@@ -97,6 +98,12 @@ namespace bluebean.ShaderToyOffline
             {
                 EventOnDeleteButtonClick(this);
             }
+        }
+
+        public void OnNeedRePaint(object sender, PaintEventArgs e)
+        {
+            Console.WriteLine("ShaderListItemUIController:OnNeedRePaint");
+            glCanvas.DoRender();
         }
     }
 }

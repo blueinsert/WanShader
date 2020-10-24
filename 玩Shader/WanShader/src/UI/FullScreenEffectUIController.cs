@@ -28,7 +28,7 @@ namespace bluebean.ShaderToyOffline
         {
             InitializeComponent();
             m_shaderData = shaderData;
-            m_render = new ShaderToyStyleRender(openGLCanvas.OpenGL);
+            m_render = new ShaderToyStyleRender(openGLCanvas.OpenGL,new Vec2(openGLCanvas.Width,openGLCanvas.Height));
         }
 
         private void StartTickRender()

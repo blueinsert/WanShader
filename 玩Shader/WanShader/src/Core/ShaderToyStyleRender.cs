@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 
@@ -21,6 +22,8 @@ namespace bluebean.ShaderToyOffline
         private bool m_hasError = false;
         private Exception m_exception;
 
+        private int m_width;
+        private int m_height;
         private float m_iTime;
         private float m_iTimeDelta;
         private Vec2 m_iResolution;
@@ -274,9 +277,11 @@ namespace bluebean.ShaderToyOffline
             }
         }
 
-        public ShaderToyStyleRender(OpenGL openGL)
+        public ShaderToyStyleRender(OpenGL openGL,Vec2 size)
         {
             m_openGL = openGL;
+            m_width = (int)size.x;
+            m_height = (int)size.y;
             CreateVerticesForSquare();
             CreateFrameBufferTextures();
         }
@@ -377,7 +382,6 @@ namespace bluebean.ShaderToyOffline
             
         }
         #endregion
-
 
         #region 渲染
 
@@ -504,5 +508,19 @@ namespace bluebean.ShaderToyOffline
             }
         }
         #endregion
+
+        public void ReadTexture(out Color[] colors,out int width,out int height)
+        {
+            byte[] bytes = new byte[m_width*m_height*4];
+            GL.ReadPixels(0, 0, m_width, m_height, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, bytes);
+            width = m_width; height = m_height;
+            colors = new Color[m_width * m_height];
+            for(int i=0;i< m_width * m_height; i++)
+            {
+                int j = i * 4;
+                Color c = Color.FromArgb(bytes[j+3], bytes[j], bytes[j + 1], bytes[j + 2]);
+                colors[i] = c;
+            }
+        }
     }
 }

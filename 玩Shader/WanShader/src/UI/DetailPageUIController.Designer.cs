@@ -61,6 +61,7 @@
             this.codeEditorTabControl = new System.Windows.Forms.TabControl();
             this.compileButton = new System.Windows.Forms.Button();
             this.openGLControl1 = new SharpGL.OpenGLControl();
+            this.exportImgButton = new System.Windows.Forms.Button();
             this.DemoPagePanel.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.channelGroup.SuspendLayout();
@@ -83,6 +84,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DemoPagePanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.DemoPagePanel.Controls.Add(this.exportImgButton);
             this.DemoPagePanel.Controls.Add(this.fullScreenButton);
             this.DemoPagePanel.Controls.Add(this.stopOrContinueButton);
             this.DemoPagePanel.Controls.Add(this.resetButton);
@@ -448,6 +450,16 @@
             this.openGLControl1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OpenGLCanvas_OnMouseMove);
             this.openGLControl1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OpenGLCanvas_OnMouseUp);
             // 
+            // exportImgButton
+            // 
+            this.exportImgButton.Location = new System.Drawing.Point(470, 432);
+            this.exportImgButton.Name = "exportImgButton";
+            this.exportImgButton.Size = new System.Drawing.Size(75, 23);
+            this.exportImgButton.TabIndex = 18;
+            this.exportImgButton.Text = "exportImg";
+            this.exportImgButton.UseVisualStyleBackColor = true;
+            this.exportImgButton.Click += new System.EventHandler(this.OnExportImgButtonClick);
+            // 
             // DetailPageUIController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -512,5 +524,6 @@
         private System.Windows.Forms.Button fullScreenButton;
         private System.Windows.Forms.Button stopOrContinueButton;
         private System.Windows.Forms.Button resetButton;
+        private System.Windows.Forms.Button exportImgButton;
     }
 }
