@@ -24,8 +24,14 @@ namespace bluebean.ShaderToyOffline
 
         private void OnLoad(object sender, EventArgs e)
         {
-            UserData.Instance.EventOnShaderUpdated += UserData_OnShaderUpdated;
-            UserData_OnShaderUpdated();
+            this.Hide();
+            var genThumbTask = new ThumbGenUIController();
+            genThumbTask.EventOnClose += () => {
+                this.Show();
+                UserData.Instance.EventOnShaderUpdated += UserData_OnShaderUpdated;
+                UserData_OnShaderUpdated();
+            };
+            genThumbTask.Show();
         }
 
         private void OnClosed(object sender, FormClosedEventArgs e)
@@ -97,17 +103,5 @@ namespace bluebean.ShaderToyOffline
             detailPageForm.Show();
         }
 
-        private void OnNeedRePaint(object sender, PaintEventArgs e)
-        {
-            Console.WriteLine("MainPageUIController:OnNeedRePaint");
-            foreach(var listItem in m_shaderUICtrlList)
-            {
-                if ((listItem.Location.Y > 0 && listItem.Location.Y < flowLayoutPanel1.Height)
-                    || (listItem.Location.Y + listItem.Height > 0 && listItem.Location.Y + listItem.Height < flowLayoutPanel1.Height))
-                {
-                    listItem.OnNeedRePaint(sender, e);
-                }  
-            }
-        }
     }
 }

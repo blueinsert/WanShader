@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\CoroutineScheduler.cs" />
     <Compile Include="src\Math\Math.cs" />
     <Compile Include="src\Setting.cs" />
     <Compile Include="src\UI\FullScreenEffectUIController.cs">
@@ -78,6 +79,12 @@
     </Compile>
     <Compile Include="src\UI\FullScreenEffectUIController.Designer.cs">
       <DependentUpon>FullScreenEffectUIController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\UI\ThumbGenUIController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\UI\ThumbGenUIController.Designer.cs">
+      <DependentUpon>ThumbGenUIController.cs</DependentUpon>
     </Compile>
     <Compile Include="src\UserData\UserData.cs" />
     <Compile Include="src\UI\DetailPageUIController.cs">
@@ -134,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\UI\ShaderListItemUIController.resx">
       <DependentUpon>ShaderListItemUIController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\UI\ThumbGenUIController.resx">
+      <DependentUpon>ThumbGenUIController.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

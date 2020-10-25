@@ -77,7 +77,7 @@ namespace bluebean.ShaderToyOffline
         public List<RenderPassData> renderpass;
 
         public ShaderData() {
-            info = new ShaderInfo() { name = "a new shader" };
+            info = new ShaderInfo() { name = "a new shader",id = Guid.NewGuid().ToString("N") };
             renderpass = new List<RenderPassData>();
             renderpass.Add(new RenderPassData() { code = ResourceLoader.LoadTextFile(Setting.ShaderToyShaderDefaultPath),name = "Image",type = "image"});
         }

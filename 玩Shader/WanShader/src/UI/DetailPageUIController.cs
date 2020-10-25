@@ -22,6 +22,7 @@ namespace bluebean.ShaderToyOffline
         private ShaderData m_shaderData;
         private Timer m_timer;
         private Timer m_fpsTimer;
+        private Timer m_genThumbTimer;
 
         private ShaderToyStyleRender m_render;
 
@@ -45,6 +46,18 @@ namespace bluebean.ShaderToyOffline
         }
 
         #region 内部方法
+
+        private void GenerateThumb()
+        {
+            var bitmap = m_render.ExportBitmap();
+            if (!Directory.Exists(Setting.ThumbPath))
+            {
+                Directory.CreateDirectory(Setting.ThumbPath);
+            }
+            var path = string.Format("{0}/{1}.png", Setting.ThumbPath, m_shaderData.info.id);
+            bitmap.Save(path);
+        }
+
         private void TryStopTickRender()
         {
             if (m_timer != null)
@@ -259,6 +272,7 @@ namespace bluebean.ShaderToyOffline
             {
                 UserData.Instance.UpdateShader(m_shaderData);
             }
+            GenerateThumb();
         }
 
         private void OnCompileButtonClick(object sender, EventArgs e)
@@ -274,21 +288,17 @@ namespace bluebean.ShaderToyOffline
 
         private void OnExportImgButtonClick(object sender, EventArgs e)
         {
-            Color[] colors;
-            int width;
-            int height;
-            m_render.ReadTexture(out colors, out width, out height);
-            Console.WriteLine(colors);
-            Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format24bppRgb);
-            for(int i = 0; i < height; i++)
+            var saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "图像文件(*.png)|*.png";
+            saveDialog.FilterIndex = 1;
+            saveDialog.RestoreDirectory = true;
+
+            var bitmap = m_render.ExportBitmap();
+            if (saveDialog.ShowDialog() == DialogResult.OK)
             {
-                for(int j = 0; j < width; j++)
-                {
-                    Color c = colors[i * width + j];
-                    bitmap.SetPixel(j, height - i-1, c);
-                }
+                string path = saveDialog.FileName.ToString();
+                bitmap.Save(path);
             }
-            bitmap.Save("./Assets/save.png");
         }
 
         private void OnFormClosed(object sender, FormClosedEventArgs e)

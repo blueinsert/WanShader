@@ -19,5 +19,7 @@ namespace bluebean.ShaderToyOffline
         public const string FragShaderForErrorPath = AssetPath + "/ShaderInternal/ShaderError.frag";
         
         public const string ShaderToyShaderDefaultPath = AssetPath + "/ShaderInternal/ShaderToyShaderDefault.txt";
+
+        public const string ThumbPath = "./Assets" + "/Thumbs";
     }
 }

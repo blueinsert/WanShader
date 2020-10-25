@@ -7,81 +7,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace bluebean.ShaderToyOffline
 {
     public partial class ShaderListItemUIController : UserControl
     {
-        public event Action<ShaderListItemUIController> EventOnLoaded;
         public event Action<ShaderListItemUIController> EventOnDeleteButtonClick;
         public event Action<ShaderListItemUIController> EventOnClick;
 
-        private ShaderToyStyleRender m_render;
         public ShaderData m_shaderData;
-
-        private Timer m_timer;
-        private float m_iTimeDelta = 0;
-        private float m_iTime = 0;
 
         public ShaderListItemUIController()
         {
             InitializeComponent();
         }
 
+        private bool LoadThumb()
+        {
+            string thumbPath = string.Format("{0}/{1}.png", Setting.ThumbPath, m_shaderData.info.id);
+            if (!File.Exists(thumbPath))
+            {
+                Console.WriteLine(String.Format("thumb {0} not exit", thumbPath));
+                return false;
+            }
+            pictureBox.Load(thumbPath);
+            return true;
+        }
+
         public void Init(ShaderData shaderData)
         {
-            if (m_render != null)
-            {
-                m_render.Dispose();
-                m_render = null;
-            }
-            if (shaderData == null)
-            {
-                return;
-            }
             m_shaderData = shaderData;
             nameText.Text = m_shaderData.info.name;
-            m_render = new ShaderToyStyleRender(glCanvas.OpenGL,new Vec2(glCanvas.Width,glCanvas.Height));
-            m_render.CompileShader(m_shaderData.Clone());
-            glCanvas.DoRender();
-        }
-
-        private void OnLoaded(object sender, EventArgs e)
-        {
-            if (EventOnLoaded != null)
-            {
-                EventOnLoaded(this);
-                EventOnLoaded = null;
-            }
-        }
-
-        private void OpenGL_OnDraw(object sender, SharpGL.RenderEventArgs args)
-        {
-            if (m_render != null)
-            {
-                m_render.Render(m_iTime, m_iTimeDelta, new Vec2(glCanvas.Width,glCanvas.Height),new Vec3(0,0,0));
-            }
-        }
-
-        private void OnMouseEnter(object sender, EventArgs e)
-        {
-            m_timer = new Timer();
-            m_timer.Interval = 33;
-            m_timer.Tick += (object sender1, EventArgs e1) => {
-                m_iTimeDelta = 0.033f * 4;
-                m_iTime += m_iTimeDelta;
-                glCanvas.DoRender();
-            };
-            m_timer.Start();
-        }
-
-        private void OnMouseLeave(object sender, EventArgs e)
-        {
-            if (m_timer != null)
-            {
-                m_timer.Dispose();
-                m_timer = null;
-            }
+            LoadThumb();
         }
 
         private void OnClick(object sender, EventArgs e)
@@ -100,10 +58,5 @@ namespace bluebean.ShaderToyOffline
             }
         }
 
-        public void OnNeedRePaint(object sender, PaintEventArgs e)
-        {
-            Console.WriteLine("ShaderListItemUIController:OnNeedRePaint");
-            glCanvas.DoRender();
-        }
     }
 }

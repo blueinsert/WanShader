@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing.Imaging;
 
 namespace bluebean.ShaderToyOffline
 {
@@ -521,6 +522,25 @@ namespace bluebean.ShaderToyOffline
                 Color c = Color.FromArgb(bytes[j+3], bytes[j], bytes[j + 1], bytes[j + 2]);
                 colors[i] = c;
             }
+        }
+
+        public Bitmap ExportBitmap()
+        {
+            Color[] colors;
+            int width;
+            int height;
+            ReadTexture(out colors, out width, out height);
+            Console.WriteLine(colors);
+            Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format24bppRgb);
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    Color c = colors[i * width + j];
+                    bitmap.SetPixel(j, height - i - 1, c);
+                }
+            }
+            return bitmap;
         }
     }
 }

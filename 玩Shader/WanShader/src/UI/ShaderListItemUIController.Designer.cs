@@ -30,10 +30,8 @@
         {
             this.nameText = new System.Windows.Forms.Label();
             this.deleteButton = new System.Windows.Forms.Button();
-            this.glCanvas = new SharpGL.OpenGLControl();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.glCanvas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // nameText
@@ -57,30 +55,16 @@
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.OnDeleteButtonClick);
             // 
-            // glCanvas
+            // pictureBox
             // 
-            this.glCanvas.DrawFPS = false;
-            this.glCanvas.Location = new System.Drawing.Point(4, 4);
-            this.glCanvas.Name = "glCanvas";
-            this.glCanvas.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL4_4;
-            this.glCanvas.RenderContextType = SharpGL.RenderContextType.NativeWindow;
-            this.glCanvas.RenderTrigger = SharpGL.RenderTrigger.Manual;
-            this.glCanvas.Size = new System.Drawing.Size(231, 134);
-            this.glCanvas.TabIndex = 3;
-            this.glCanvas.OpenGLDraw += new SharpGL.RenderEventHandler(this.OpenGL_OnDraw);
-            this.glCanvas.Click += new System.EventHandler(this.OnClick);
-            this.glCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.OnNeedRePaint);
-            this.glCanvas.MouseEnter += new System.EventHandler(this.OnMouseEnter);
-            this.glCanvas.MouseLeave += new System.EventHandler(this.OnMouseLeave);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(238, 135);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
+            this.pictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox.Location = new System.Drawing.Point(3, 0);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(232, 138);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.TabIndex = 4;
+            this.pictureBox.TabStop = false;
+            this.pictureBox.Click += new System.EventHandler(this.OnClick);
             // 
             // ShaderListItemUIController
             // 
@@ -89,13 +73,10 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Controls.Add(this.nameText);
             this.Controls.Add(this.deleteButton);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.glCanvas);
+            this.Controls.Add(this.pictureBox);
             this.Name = "ShaderListItemUIController";
             this.Size = new System.Drawing.Size(238, 138);
-            this.Load += new System.EventHandler(this.OnLoaded);
-            ((System.ComponentModel.ISupportInitialize)(this.glCanvas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,7 +85,6 @@
         #endregion
         private System.Windows.Forms.Label nameText;
         private System.Windows.Forms.Button deleteButton;
-        private SharpGL.OpenGLControl glCanvas;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox;
     }
 }

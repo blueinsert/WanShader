@@ -17,6 +17,7 @@ namespace bluebean.ShaderToyOffline
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             UserData.CreateInstance("./Assets/shaders.json");
+            
             Application.Run(new MainPageUIController());
         }
     }
