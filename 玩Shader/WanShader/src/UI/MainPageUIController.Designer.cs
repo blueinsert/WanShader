@@ -30,7 +30,14 @@
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.addNewButton = new System.Windows.Forms.Button();
+            this.PanelLoading = new System.Windows.Forms.Panel();
+            this.PanelMainPage = new System.Windows.Forms.Panel();
+            this.glCanvas = new SharpGL.OpenGLControl();
+            this.loadingText = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
+            this.PanelLoading.SuspendLayout();
+            this.PanelMainPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.glCanvas)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -53,17 +60,70 @@
             this.addNewButton.UseVisualStyleBackColor = true;
             this.addNewButton.Click += new System.EventHandler(this.OnNewButtonClick);
             // 
+            // PanelLoading
+            // 
+            this.PanelLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelLoading.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.PanelLoading.Controls.Add(this.loadingText);
+            this.PanelLoading.Controls.Add(this.glCanvas);
+            this.PanelLoading.Location = new System.Drawing.Point(0, 0);
+            this.PanelLoading.Name = "PanelLoading";
+            this.PanelLoading.Size = new System.Drawing.Size(801, 449);
+            this.PanelLoading.TabIndex = 1;
+            // 
+            // PanelMainPage
+            // 
+            this.PanelMainPage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelMainPage.Controls.Add(this.flowLayoutPanel1);
+            this.PanelMainPage.Location = new System.Drawing.Point(0, 0);
+            this.PanelMainPage.Name = "PanelMainPage";
+            this.PanelMainPage.Size = new System.Drawing.Size(801, 452);
+            this.PanelMainPage.TabIndex = 2;
+            // 
+            // glCanvas
+            // 
+            this.glCanvas.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.glCanvas.DrawFPS = false;
+            this.glCanvas.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.glCanvas.Location = new System.Drawing.Point(96, 34);
+            this.glCanvas.Name = "glCanvas";
+            this.glCanvas.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL4_4;
+            this.glCanvas.RenderContextType = SharpGL.RenderContextType.NativeWindow;
+            this.glCanvas.RenderTrigger = SharpGL.RenderTrigger.Manual;
+            this.glCanvas.Size = new System.Drawing.Size(480, 320);
+            this.glCanvas.TabIndex = 2;
+            this.glCanvas.OpenGLDraw += new SharpGL.RenderEventHandler(this.OnGLDraw);
+            // 
+            // loadingText
+            // 
+            this.loadingText.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.loadingText.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.loadingText.Location = new System.Drawing.Point(616, 388);
+            this.loadingText.Name = "loadingText";
+            this.loadingText.Size = new System.Drawing.Size(150, 33);
+            this.loadingText.TabIndex = 3;
+            this.loadingText.Text = "loading";
+            this.loadingText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // MainPageUIController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.PanelLoading);
+            this.Controls.Add(this.PanelMainPage);
             this.Name = "MainPageUIController";
             this.Text = "MainPageUIController";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnClosed);
             this.Load += new System.EventHandler(this.OnLoad);
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.PanelLoading.ResumeLayout(false);
+            this.PanelMainPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.glCanvas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -72,5 +132,9 @@
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button addNewButton;
+        private System.Windows.Forms.Panel PanelLoading;
+        private System.Windows.Forms.Panel PanelMainPage;
+        private SharpGL.OpenGLControl glCanvas;
+        private System.Windows.Forms.Label loadingText;
     }
 }

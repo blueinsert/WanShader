@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,12 @@ namespace bluebean.ShaderToyOffline
     {
         private List<ShaderListItemUIController> m_shaderUICtrlList = new List<ShaderListItemUIController>();
 
+        private List<ShaderData> m_shaderList = new List<ShaderData>();
+        private ShaderToyStyleRender m_render;
+
+        private CoroutineScheduler m_coroutineScheduler;
+        private Timer m_coroutineTicker;
+
         public MainPageUIController()
         {
             InitializeComponent();
@@ -24,14 +32,14 @@ namespace bluebean.ShaderToyOffline
 
         private void OnLoad(object sender, EventArgs e)
         {
-            this.Hide();
-            var genThumbTask = new ThumbGenUIController();
-            genThumbTask.EventOnClose += () => {
-                this.Show();
+            PanelMainPage.Visible = false;
+            PanelLoading.Visible = true;
+            GenerateThumbs(() => {
+                PanelMainPage.Visible = true;
+                PanelLoading.Visible = false;
                 UserData.Instance.EventOnShaderUpdated += UserData_OnShaderUpdated;
                 UserData_OnShaderUpdated();
-            };
-            genThumbTask.Show();
+            });
         }
 
         private void OnClosed(object sender, FormClosedEventArgs e)
@@ -103,5 +111,82 @@ namespace bluebean.ShaderToyOffline
             detailPageForm.Show();
         }
 
-    }
+        IEnumerator Co_GenThumbs(Action onEnd)
+        {
+            for (int i = 0; i < m_shaderList.Count; i++)
+            {
+                var shaderData = m_shaderList[i];
+                m_render.CompileShader(shaderData);
+                glCanvas.DoRender();
+                m_render.Render(4, 0.33f, new Vec2(glCanvas.Width, glCanvas.Height), new Vec3(0, 0, 0));
+                var bitmap = m_render.ExportBitmap();
+                var bitmapPath = string.Format("{0}/{1}.png", Setting.ThumbPath, shaderData.info.id);
+                bitmap.Save(bitmapPath);
+                string loading = "loading";
+                switch (i % 3)
+                {
+                    case 0:
+                        loading = "loading.";
+                        break;
+                    case 1:
+                        loading = "loading..";
+                        break;
+                    case 2:
+                        loading = "loading...";
+                        break;
+                }
+
+                loadingText.Text = loading;
+                yield return new WaitForFrames(2);
+            }
+            if (onEnd != null)
+            {
+                onEnd();
+            }
+        }
+
+        private void OnGLDraw(object sender, SharpGL.RenderEventArgs args)
+        {
+            if (m_render != null)
+                m_render.Render(4, 0.33f, new Vec2(glCanvas.Width, glCanvas.Height), new Vec3(0, 0, 0));
+        }
+
+        private void GenerateThumbs(Action onEnd)
+        {
+            foreach (var shaderData in UserData.Instance.GetShaders())
+            {
+                var thumbPath = string.Format("{0}/{1}.png", Setting.ThumbPath, shaderData.info.id);
+                if (!File.Exists(thumbPath))
+                {
+                    m_shaderList.Add(shaderData);
+                }
+            }
+            if (m_shaderList.Count == 0)
+            {
+                if (onEnd != null)
+                {
+                    onEnd();
+                }
+                return;
+            }
+            m_render = new ShaderToyStyleRender(glCanvas.OpenGL, new Vec2(glCanvas.Width, glCanvas.Height));
+
+            m_coroutineTicker = new Timer();
+            m_coroutineScheduler = new CoroutineScheduler();
+
+            m_coroutineTicker.Interval = 33;
+            m_coroutineTicker.Tick += (object sender1, EventArgs e1) => {
+                m_coroutineScheduler.Tick();
+            };
+            m_coroutineTicker.Start();
+
+            m_coroutineScheduler.StartCorcoutine(Co_GenThumbs(() => {
+                if (onEnd != null)
+                {
+                    onEnd();
+                }
+            }));
+        }
+ 
+}
 }

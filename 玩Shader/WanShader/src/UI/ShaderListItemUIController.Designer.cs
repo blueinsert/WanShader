@@ -36,14 +36,18 @@
             // 
             // nameText
             // 
-            this.nameText.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.nameText.AutoSize = true;
-            this.nameText.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.nameText.Location = new System.Drawing.Point(104, 106);
+            this.nameText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nameText.BackColor = System.Drawing.Color.DimGray;
+            this.nameText.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.nameText.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.nameText.ForeColor = System.Drawing.Color.Black;
+            this.nameText.Location = new System.Drawing.Point(0, 94);
             this.nameText.Name = "nameText";
-            this.nameText.Size = new System.Drawing.Size(29, 12);
+            this.nameText.Size = new System.Drawing.Size(232, 25);
             this.nameText.TabIndex = 1;
             this.nameText.Text = "name";
+            this.nameText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // deleteButton
             // 
@@ -57,8 +61,9 @@
             // 
             // pictureBox
             // 
+            this.pictureBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.pictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox.Location = new System.Drawing.Point(3, 0);
+            this.pictureBox.Location = new System.Drawing.Point(0, -3);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(232, 138);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -78,7 +83,6 @@
             this.Size = new System.Drawing.Size(238, 138);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

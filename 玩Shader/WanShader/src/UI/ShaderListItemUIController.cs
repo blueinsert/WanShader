@@ -21,6 +21,7 @@ namespace bluebean.ShaderToyOffline
         public ShaderListItemUIController()
         {
             InitializeComponent();
+            //pictureBox.Controls.Add(this.nameText);
         }
 
         private bool LoadThumb()
@@ -31,7 +32,8 @@ namespace bluebean.ShaderToyOffline
                 Console.WriteLine(String.Format("thumb {0} not exit", thumbPath));
                 return false;
             }
-            pictureBox.Load(thumbPath);
+            //pictureBox.Load(thumbPath);
+            pictureBox.LoadAsync(thumbPath);
             return true;
         }
 

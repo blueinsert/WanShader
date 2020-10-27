@@ -22,7 +22,6 @@ namespace bluebean.ShaderToyOffline
         private ShaderData m_shaderData;
         private Timer m_timer;
         private Timer m_fpsTimer;
-        private Timer m_genThumbTimer;
 
         private ShaderToyStyleRender m_render;
 
@@ -30,7 +29,6 @@ namespace bluebean.ShaderToyOffline
         private int m_iFrame;
         private int m_iFrameLast;
         private float m_iTime;
-        private float m_iTimeDelta;
         private Vec3 m_iMouse;
         private bool m_isStop = false;
 
@@ -54,8 +52,12 @@ namespace bluebean.ShaderToyOffline
             {
                 Directory.CreateDirectory(Setting.ThumbPath);
             }
-            var path = string.Format("{0}/{1}.png", Setting.ThumbPath, m_shaderData.info.id);
-            bitmap.Save(path);
+            var filePath = string.Format("{0}/{1}.png", Setting.ThumbPath, m_shaderData.info.id);
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+            bitmap.Save(filePath);
         }
 
         private void TryStopTickRender()
