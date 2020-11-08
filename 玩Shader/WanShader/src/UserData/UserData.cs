@@ -129,6 +129,20 @@ namespace bluebean.ShaderToyOffline
             else
             {
                 m_ds = JsonMapper.ToObject<UserDataDS>(content);
+                //预处理,只保留image Pass
+                foreach (var shader in m_ds.shaders)
+                {
+                    if (shader.renderpass.Count > 1)
+                    {
+                        var imgPass = shader.renderpass.Find((elem) => { return elem.name == "Image"; });
+                        if (imgPass == null)
+                        {
+                            imgPass = new RenderPassData() { code = ResourceLoader.LoadTextFile(Setting.ShaderToyShaderDefaultPath), name = "Image", type = "image" };
+                        }
+                        shader.renderpass.Clear();
+                        shader.renderpass.Add(imgPass);
+                    }
+                }
                 m_ds.shaders.Sort(ShaderSorter);
             }
         }

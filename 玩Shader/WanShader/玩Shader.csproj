@@ -87,12 +87,6 @@
     <Compile Include="src\UI\DetailPageUIController.Designer.cs">
       <DependentUpon>DetailPageUIController.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\UI\InputChannelSelectUIController.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\UI\InputChannelSelectUIController.Designer.cs">
-      <DependentUpon>InputChannelSelectUIController.cs</DependentUpon>
-    </Compile>
     <Compile Include="src\ResourceLoader.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,9 +110,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\UI\FullScreenEffectUIController.resx">
       <DependentUpon>FullScreenEffectUIController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\UI\InputChannelSelectUIController.resx">
-      <DependentUpon>InputChannelSelectUIController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

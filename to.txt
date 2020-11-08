@@ -6,4 +6,4 @@
 
 features:
 1.添加和删除renderPass的UI显示优化
-2.显示openGLCanvas的size
+2.显示openGLCanvas的size x

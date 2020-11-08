@@ -21,7 +21,7 @@ namespace bluebean.ShaderToyOffline
             //progarmId替换成passName,错误行号替换为相对值
             m_error = Regex.Replace(m_error, pattern, (match) =>
             {
-                var errorLine = int.Parse(match.Groups[2].Value) - 14;
+                var errorLine = int.Parse(match.Groups[2].Value) - 16;
                 return string.Format("{0}({1})", m_passName, errorLine);
             });
         }

@@ -24,6 +24,7 @@ namespace bluebean.ShaderToyOffline
         private Timer m_fpsTimer;
 
         private ShaderToyStyleRender m_render;
+        private TextEditorControl m_codeTextEditor;
 
         private DateTime m_lastRenderTime;
         private int m_iFrame;
@@ -32,15 +33,15 @@ namespace bluebean.ShaderToyOffline
         private Vec3 m_iMouse;
         private bool m_isStop = false;
 
-        private Point m_lastInputChannelSelectFormLocation;
-
         public DetailPageUIController(ShaderData shaderData, bool isNew)
         {
             m_isNew = isNew;
             m_shaderData = shaderData;
+            
             m_lastRenderTime = DateTime.Now;
             StartFpsTimer();
             InitializeComponent();
+            resulationText.Text = string.Format("{0}x{1}", openGLControl1.Width, openGLControl1.Height);
         }
 
         #region 内部方法
@@ -103,28 +104,17 @@ namespace bluebean.ShaderToyOffline
                 var compileE = e as ShaderCompileError;
                 if (compileE != null)
                 {
-                    MessageBox.Show(compileE.Error);
+                    compileOutputTextBox.Text = compileE.Error.ToString();
                 }
                 else
                 {
-                    MessageBox.Show(e.Message + e.StackTrace, "error");
+                    compileOutputTextBox.Text = e.Message + e.StackTrace;
                 }
             }
-        }
-
-        private void AddRenderPass(string passName)
-        {
-            RenderPassData newPass = new RenderPassData()
+            else
             {
-                code = @"void mainImage( out vec4 fragColor, in vec2 fragCoord )
-{
-                    fragColor = texture(iChannel0, fragCoord / iResolution.xy);
-        }",
-                name = passName,
-            };
-            m_shaderData.renderpass.Add(newPass);
-            var tabPage = AddCodeEditorTabPage(newPass);
-            codeEditorTabControl.SelectedIndex = codeEditorTabControl.Controls.Count - 1;
+                compileOutputTextBox.Text = "compile success!";
+            }
         }
 
         private string ConcatStringArray(string[] strs, string concat)
@@ -146,76 +136,17 @@ namespace bluebean.ShaderToyOffline
 
         #region UI显示更新
 
-        private TabPage AddCodeEditorTabPage(RenderPassData renderPass) {
-            TabPage tabPage = new TabPage(renderPass.name);
-            TextEditorControl textEditor = new TextEditorControl();
-            textEditor.Encoding = Encoding.GetEncoding("utf-8");
-            textEditor.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C++.NET");
-            textEditor.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top;
-            textEditor.Text = renderPass.code;
-            tabPage.Controls.Add(textEditor);
-            textEditor.Size = tabPage.Size;
-            codeEditorTabControl.Controls.Add(tabPage);
-            //m_codeEditorTabControl.Controls.SetChildIndex(tabPage, 0);
-            return tabPage;
-        }
-
         private void SetEditArea() {
-            for (int i = 0; i < m_shaderData.renderpass.Count; i++) {
-                var renderPass = m_shaderData.renderpass[i];
-                AddCodeEditorTabPage(renderPass);
-            }
-        }
-
-        private void SetInputChannelPicture(int channelIndex, string picPath)
-        {
-
-            PictureBox pic = null;
-            Button deleteButton = null;
-            switch (channelIndex)
-            {
-                case 0:
-                    pic = iChannel0PictureBox; deleteButton = iChannel0DeleteButton;
-                    break;
-                case 1:
-                    pic = iChannel1PictureBox; deleteButton = iChannel1DeleteButton;
-                    break;
-                case 2:
-                    pic = iChannel2PictureBox; deleteButton = iChannel2DeleteButton;
-                    break;
-                case 3:
-                    pic = iChannel3PictureBox; deleteButton = iChannel3DeleteButton;
-                    break;
-            }
-            if (string.IsNullOrEmpty(picPath))
-            {
-                deleteButton.Visible = false;
-                string fullPath = Directory.GetCurrentDirectory() + "\\media\\misc\\none.png";
-                pic.LoadAsync(fullPath);
-            }
-            else
-            {
-                deleteButton.Visible = true;
-                string fullPath = Directory.GetCurrentDirectory() + picPath;
-                pic.LoadAsync(fullPath);
-            }
-        }
-
-        private void SetInputChannelPictures()
-        {
-            int[] channels = new int[4];
-            foreach (var input in m_shaderData.Inputs)
-            {
-                SetInputChannelPicture(input.channel, input.filepath);
-                channels[input.channel] = 1;
-            }
-            for (int i = 0; i < 4; i++)
-            {
-                if (channels[i] == 0)
-                {
-                    SetInputChannelPicture(i, "");
-                }
-            }
+            var renderPass = m_shaderData.renderpass.Find((elem) => { return elem.name == "Image"; });
+            TabPage tabPage = new TabPage("Image");
+            m_codeTextEditor = new TextEditorControl();
+            m_codeTextEditor.Encoding = Encoding.GetEncoding("utf-8");
+            m_codeTextEditor.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C++.NET");
+            m_codeTextEditor.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top;
+            m_codeTextEditor.Text = renderPass.code;
+            tabPage.Controls.Add(m_codeTextEditor);
+            m_codeTextEditor.Size = tabPage.Size;
+            codeEditorTabControl.Controls.Add(tabPage);
         }
 
         private void SetShaderInfo()
@@ -232,7 +163,6 @@ namespace bluebean.ShaderToyOffline
             m_render = new ShaderToyStyleRender(openGLControl1.OpenGL,new Vec2(openGLControl1.Width,openGLControl1.Height));
             CompileShader();
             StartTickRender();
-            SetInputChannelPictures();
         }
         #endregion
 
@@ -279,28 +209,8 @@ namespace bluebean.ShaderToyOffline
 
         private void OnCompileButtonClick(object sender, EventArgs e)
         {
-            for (int i = 0; i < codeEditorTabControl.Controls.Count; i++)
-            {
-                var renderPass = m_shaderData.renderpass[i];
-                var textEditor = codeEditorTabControl.TabPages[i].Controls[0] as TextEditorControl;
-                renderPass.code = textEditor.Text;
-            }
+            m_shaderData.renderpass[0].code = m_codeTextEditor.Text;
             CompileShader();
-        }
-
-        private void OnExportImgButtonClick(object sender, EventArgs e)
-        {
-            var saveDialog = new SaveFileDialog();
-            saveDialog.Filter = "图像文件(*.png)|*.png";
-            saveDialog.FilterIndex = 1;
-            saveDialog.RestoreDirectory = true;
-
-            var bitmap = m_render.ExportBitmap();
-            if (saveDialog.ShowDialog() == DialogResult.OK)
-            {
-                string path = saveDialog.FileName.ToString();
-                bitmap.Save(path);
-            }
         }
 
         private void OnFormClosed(object sender, FormClosedEventArgs e)
@@ -313,29 +223,6 @@ namespace bluebean.ShaderToyOffline
             }
         }
 
-        private void OnRenderPassAddButtonClick(object sender, EventArgs e)
-        {
-            List<string> allPassName = new List<string>() { "Common", "Buf A", "Buf B", "Buf C", "Buf D", "Cube A", "Sound", "Image" };
-            List<string> addablePassName = new List<string>();
-            foreach (var passName in allPassName)
-            {
-                if (m_shaderData.renderpass.Find((elem) => { return elem.name == passName; }) == null)
-                {
-                    addablePassName.Add(passName);
-                }
-            }
-            ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
-            foreach (var passName in addablePassName)
-            {
-                ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem(passName);
-                toolStripMenuItem.Click += (sender1, e1) => {
-                    AddRenderPass(passName);
-                };
-                contextMenuStrip.Items.Add(toolStripMenuItem);
-            }
-            contextMenuStrip.Show(renderPassOperGroup, m_renderPassAddButton.Location);
-        }
-
         private void OnRenderPassDeleteButtonClick(object sender, EventArgs e)
         {
             var index = codeEditorTabControl.SelectedIndex;
@@ -345,85 +232,6 @@ namespace bluebean.ShaderToyOffline
             codeEditorTabControl.SelectedIndex = codeEditorTabControl.Controls.Count - 1;
             m_shaderData.renderpass.RemoveAt(index);
         }
-
-        private void OnChannelDeleteButtonClick(int channelIndex)
-        {
-            var input = m_shaderData.Inputs.Find((e) => { return e.channel == channelIndex; });
-            if (input != null)
-            {
-                m_shaderData.Inputs.Remove(input);
-                SetInputChannelPictures();
-                CompileShader();
-            }
-        }
-
-        private void OnSelectInputChannelFinish(int channelIndex, string type, string path)
-        {
-            var input = m_shaderData.Inputs.Find((e) => { return e.channel == channelIndex; });
-            if (input == null)
-            {
-                input = new RenderPassInput();
-                input.channel = channelIndex;
-                m_shaderData.Inputs.Add(input);
-            }
-            input.type = type;
-            input.filepath = path;
-            SetInputChannelPicture(channelIndex, path);
-            CompileShader();
-        }
-
-        private void SelectInputChannel(int channelIndex)
-        {
-            var form = InputChannelSelectUIController.GetInstance();
-            form.Show();
-            form.Location = m_lastInputChannelSelectFormLocation;
-            form.Focus();
-            form.EventOnTargetClick += (t, p) => {
-                OnSelectInputChannelFinish(channelIndex, t, p);
-            };
-            form.EventOnFormClose += (l) => { m_lastInputChannelSelectFormLocation = l; };
-        }
-
-        private void OnInputChannel0Click(object sender, EventArgs e)
-        {
-            SelectInputChannel(0);
-        }
-
-        private void OnInputChannel1Click(object sender, EventArgs e)
-        {
-            SelectInputChannel(1);
-        }
-
-        private void OnInputChannel2Click(object sender, EventArgs e)
-        {
-            SelectInputChannel(2);
-        }
-
-        private void OnInputChannel3Click(object sender, EventArgs e)
-        {
-            SelectInputChannel(3);
-        }
-
-        private void OnChannel0DeleteButtonClick(object sender, EventArgs e)
-        {
-            OnChannelDeleteButtonClick(0);
-        }
-
-        private void OnChannel1DeleteButtonClick(object sender, EventArgs e)
-        {
-            OnChannelDeleteButtonClick(1);
-        }
-
-        private void OnChannel2DeleteButtonClick(object sender, EventArgs e)
-        {
-            OnChannelDeleteButtonClick(2);
-        }
-
-        private void OnChannel3DeleteButtonClick(object sender, EventArgs e)
-        {
-            OnChannelDeleteButtonClick(3);
-        }
-
 
         private void OpenGLCanvas_OnMouseDown(object sender, MouseEventArgs e)
         {
@@ -467,8 +275,8 @@ namespace bluebean.ShaderToyOffline
             //    this.Show();
             //};
         }
+
         #endregion
 
-       
     }
 }

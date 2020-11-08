@@ -39,6 +39,7 @@ namespace bluebean.ShaderToyOffline
             m_renderTicker.Interval = (int)(1.0 / 100.0 * 1000);
             m_renderTicker.Tick += (object sender, EventArgs e) => {
                 openGLCanvas.DoRender();
+                sizeText.Text = string.Format("{0}x{1}", openGLCanvas.Width, openGLCanvas.Height);
             };
             m_renderTicker.Start();
         }
@@ -129,6 +130,21 @@ namespace bluebean.ShaderToyOffline
             m_lastRenderTime = now;
             if (m_render != null)
                 m_render.Render(m_iTime, deltaTime, new Vec2(openGLCanvas.Width, openGLCanvas.Height), m_iMouse);
+        }
+
+        private void OnExportImgButtonClick(object sender, EventArgs e)
+        {
+            var saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "图像文件(*.png)|*.png";
+            saveDialog.FilterIndex = 1;
+            saveDialog.RestoreDirectory = true;
+
+            var bitmap = m_render.ExportBitmap();
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = saveDialog.FileName.ToString();
+                bitmap.Save(path);
+            }
         }
     }
 }
