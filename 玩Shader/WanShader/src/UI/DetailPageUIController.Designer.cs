@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.DemoPagePanel = new System.Windows.Forms.Panel();
+            this.compileOutputTextBox = new System.Windows.Forms.RichTextBox();
             this.canvasControlGroup = new System.Windows.Forms.GroupBox();
             this.fpsText = new System.Windows.Forms.Label();
             this.resulationText = new System.Windows.Forms.Label();
@@ -48,7 +49,6 @@
             this.compileButton = new System.Windows.Forms.Button();
             this.openGLControl1 = new SharpGL.OpenGLControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.compileOutputTextBox = new System.Windows.Forms.RichTextBox();
             this.DemoPagePanel.SuspendLayout();
             this.canvasControlGroup.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -71,6 +71,15 @@
             this.DemoPagePanel.Name = "DemoPagePanel";
             this.DemoPagePanel.Size = new System.Drawing.Size(1488, 838);
             this.DemoPagePanel.TabIndex = 2;
+            // 
+            // compileOutputTextBox
+            // 
+            this.compileOutputTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.compileOutputTextBox.Location = new System.Drawing.Point(684, 612);
+            this.compileOutputTextBox.Name = "compileOutputTextBox";
+            this.compileOutputTextBox.Size = new System.Drawing.Size(707, 130);
+            this.compileOutputTextBox.TabIndex = 21;
+            this.compileOutputTextBox.Text = "";
             // 
             // canvasControlGroup
             // 
@@ -141,18 +150,18 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(103, 564);
+            this.groupBox1.Location = new System.Drawing.Point(103, 534);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(552, 172);
+            this.groupBox1.Size = new System.Drawing.Size(552, 208);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Info";
             // 
             // savaButton
             // 
-            this.savaButton.Location = new System.Drawing.Point(63, 199);
+            this.savaButton.Location = new System.Drawing.Point(221, 176);
             this.savaButton.Name = "savaButton";
-            this.savaButton.Size = new System.Drawing.Size(64, 27);
+            this.savaButton.Size = new System.Drawing.Size(73, 26);
             this.savaButton.TabIndex = 6;
             this.savaButton.Text = "Save";
             this.savaButton.UseVisualStyleBackColor = true;
@@ -250,15 +259,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // compileOutputTextBox
-            // 
-            this.compileOutputTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.compileOutputTextBox.Location = new System.Drawing.Point(684, 612);
-            this.compileOutputTextBox.Name = "compileOutputTextBox";
-            this.compileOutputTextBox.Size = new System.Drawing.Size(707, 130);
-            this.compileOutputTextBox.TabIndex = 21;
-            this.compileOutputTextBox.Text = "";
             // 
             // DetailPageUIController
             // 

@@ -17,7 +17,21 @@ namespace bluebean.ShaderToyOffline
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             UserData.CreateInstance("./Assets/shaders.json");
-            
+            //预处理,只保留image Pass
+            foreach (var shader in UserData.Instance.GetShaders())
+            {
+                if (shader.renderpass.Count > 1)
+                {
+                    var imgPass = shader.renderpass.Find((elem) => { return elem.name == "Image"; });
+                    if (imgPass == null)
+                    {
+                        imgPass = new RenderPassData() { code = ResourceLoader.LoadTextFile(Setting.ShaderToyShaderDefaultPath), name = "Image", type = "image" };
+                    }
+                    shader.renderpass.Clear();
+                    shader.renderpass.Add(imgPass);
+                }
+                shader.Inputs.Clear();
+            }
             Application.Run(new MainPageUIController());
         }
     }

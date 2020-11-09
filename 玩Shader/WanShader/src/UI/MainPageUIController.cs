@@ -121,6 +121,10 @@ namespace bluebean.ShaderToyOffline
                 m_render.Render(4, 0.33f, new Vec2(glCanvas.Width, glCanvas.Height), new Vec3(0, 0, 0));
                 var bitmap = m_render.ExportBitmap();
                 var bitmapPath = string.Format("{0}/{1}.png", Setting.ThumbPath, shaderData.info.id);
+                if (!Directory.Exists(Setting.ThumbPath))
+                {
+                    Directory.CreateDirectory(Setting.ThumbPath);
+                }
                 bitmap.Save(bitmapPath);
                 string loading = "loading";
                 switch (i % 3)

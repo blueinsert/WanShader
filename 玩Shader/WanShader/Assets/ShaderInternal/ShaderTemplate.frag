@@ -2,7 +2,7 @@
 
 uniform vec3 iResolution;
 uniform float iTime;
-//uniform float iFrame;
+uniform int iFrame;
 uniform vec4 iMouse;
 uniform vec4 iDate;
 uniform float iTimeDelta;

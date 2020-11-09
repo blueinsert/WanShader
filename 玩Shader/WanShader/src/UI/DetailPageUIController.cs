@@ -132,6 +132,7 @@ namespace bluebean.ShaderToyOffline
             }
             return sb.ToString();
         }
+   
         #endregion
 
         #region UI显示更新
@@ -184,6 +185,11 @@ namespace bluebean.ShaderToyOffline
                 m_render.Render(m_iTime, deltaTime,new Vec2(openGLControl1.Width,openGLControl1.Height), m_iMouse);
         }
 
+        /// <summary>
+        /// 保存按钮点击
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
             m_shaderData.info.name = shaderNameTextBox.Text;
@@ -198,15 +204,25 @@ namespace bluebean.ShaderToyOffline
                 {
                     MessageBox.Show(error);
                 }
+                else
+                {
+                    MessageBox.Show("save success!");
+                }
                 m_isNew = false;
             }
             else
             {
                 UserData.Instance.UpdateShader(m_shaderData);
+                MessageBox.Show("save success!");
             }
             GenerateThumb();
         }
 
+        /// <summary>
+        /// 编译按钮点击
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnCompileButtonClick(object sender, EventArgs e)
         {
             m_shaderData.renderpass[0].code = m_codeTextEditor.Text;
