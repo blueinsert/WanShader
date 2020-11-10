@@ -195,7 +195,7 @@ namespace bluebean.ShaderToyOffline
             m_shaderData.info.name = shaderNameTextBox.Text;
             m_shaderData.info.tags = shaderTagsTextBox.Text.Split(new char[] { ',' });
             m_shaderData.info.description = shaderDescTextBox.Text;
-
+            GenerateThumb();
             if (m_isNew)
             {
                 string error;
@@ -215,7 +215,6 @@ namespace bluebean.ShaderToyOffline
                 UserData.Instance.UpdateShader(m_shaderData);
                 MessageBox.Show("save success!");
             }
-            GenerateThumb();
         }
 
         /// <summary>

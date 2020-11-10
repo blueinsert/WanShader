@@ -39,3 +39,17 @@ D:\Workplace\玩Shader\玩Shader\FBOTest\obj\Debug\FBOTest.csproj.GenerateResour
 D:\Workplace\玩Shader\玩Shader\FBOTest\obj\Debug\FBOTest.csproj.CopyComplete
 D:\Workplace\玩Shader\玩Shader\FBOTest\obj\Debug\FBOTest.exe
 D:\Workplace\玩Shader\玩Shader\FBOTest\obj\Debug\FBOTest.pdb
+E:\WorkSpace\WanShader\玩Shader\FBOTest\bin\Debug\FBOTest.exe.config
+E:\WorkSpace\WanShader\玩Shader\FBOTest\bin\Debug\FBOTest.exe
+E:\WorkSpace\WanShader\玩Shader\FBOTest\bin\Debug\FBOTest.pdb
+E:\WorkSpace\WanShader\玩Shader\FBOTest\bin\Debug\SharpGL.dll
+E:\WorkSpace\WanShader\玩Shader\FBOTest\bin\Debug\SharpGL.SceneGraph.dll
+E:\WorkSpace\WanShader\玩Shader\FBOTest\bin\Debug\SharpGL.Serialization.dll
+E:\WorkSpace\WanShader\玩Shader\FBOTest\bin\Debug\SharpGL.WinForms.dll
+E:\WorkSpace\WanShader\玩Shader\FBOTest\obj\Debug\FBOTest.csprojResolveAssemblyReference.cache
+E:\WorkSpace\WanShader\玩Shader\FBOTest\obj\Debug\FBOTest.Form1.resources
+E:\WorkSpace\WanShader\玩Shader\FBOTest\obj\Debug\FBOTest.Properties.Resources.resources
+E:\WorkSpace\WanShader\玩Shader\FBOTest\obj\Debug\FBOTest.csproj.GenerateResource.Cache
+E:\WorkSpace\WanShader\玩Shader\FBOTest\obj\Debug\FBOTest.csproj.CoreCompileInputs.cache
+E:\WorkSpace\WanShader\玩Shader\FBOTest\obj\Debug\FBOTest.exe
+E:\WorkSpace\WanShader\玩Shader\FBOTest\obj\Debug\FBOTest.pdb
