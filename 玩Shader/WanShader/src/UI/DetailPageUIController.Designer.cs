@@ -40,7 +40,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.savaButton = new System.Windows.Forms.Button();
             this.shaderNameTextBox = new System.Windows.Forms.TextBox();
-            this.shaderDescTextBox = new System.Windows.Forms.TextBox();
             this.shaderTagsTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,6 +48,7 @@
             this.compileButton = new System.Windows.Forms.Button();
             this.openGLControl1 = new SharpGL.OpenGLControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.shaderDescTextBox = new System.Windows.Forms.RichTextBox();
             this.DemoPagePanel.SuspendLayout();
             this.canvasControlGroup.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -143,9 +143,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.shaderDescTextBox);
             this.groupBox1.Controls.Add(this.savaButton);
             this.groupBox1.Controls.Add(this.shaderNameTextBox);
-            this.groupBox1.Controls.Add(this.shaderDescTextBox);
             this.groupBox1.Controls.Add(this.shaderTagsTextBox);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
@@ -173,14 +173,6 @@
             this.shaderNameTextBox.Name = "shaderNameTextBox";
             this.shaderNameTextBox.Size = new System.Drawing.Size(464, 21);
             this.shaderNameTextBox.TabIndex = 1;
-            // 
-            // shaderDescTextBox
-            // 
-            this.shaderDescTextBox.Location = new System.Drawing.Point(63, 106);
-            this.shaderDescTextBox.Multiline = true;
-            this.shaderDescTextBox.Name = "shaderDescTextBox";
-            this.shaderDescTextBox.Size = new System.Drawing.Size(464, 47);
-            this.shaderDescTextBox.TabIndex = 4;
             // 
             // shaderTagsTextBox
             // 
@@ -260,6 +252,14 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // shaderDescTextBox
+            // 
+            this.shaderDescTextBox.Location = new System.Drawing.Point(63, 98);
+            this.shaderDescTextBox.Name = "shaderDescTextBox";
+            this.shaderDescTextBox.Size = new System.Drawing.Size(464, 72);
+            this.shaderDescTextBox.TabIndex = 7;
+            this.shaderDescTextBox.Text = "";
+            // 
             // DetailPageUIController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -286,7 +286,6 @@
         private System.Windows.Forms.TabControl codeEditorTabControl;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox shaderNameTextBox;
-        private System.Windows.Forms.TextBox shaderDescTextBox;
         private System.Windows.Forms.TextBox shaderTagsTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -300,5 +299,6 @@
         private System.Windows.Forms.Label resulationText;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.RichTextBox compileOutputTextBox;
+        private System.Windows.Forms.RichTextBox shaderDescTextBox;
     }
 }
