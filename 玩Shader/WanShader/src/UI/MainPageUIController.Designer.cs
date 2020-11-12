@@ -55,9 +55,10 @@
             // 
             // addNewButton
             // 
+            this.addNewButton.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.addNewButton.Location = new System.Drawing.Point(3, 3);
             this.addNewButton.Name = "addNewButton";
-            this.addNewButton.Size = new System.Drawing.Size(231, 138);
+            this.addNewButton.Size = new System.Drawing.Size(231, 165);
             this.addNewButton.TabIndex = 0;
             this.addNewButton.Text = "New";
             this.addNewButton.UseVisualStyleBackColor = true;

@@ -22,6 +22,8 @@ namespace bluebean.ShaderToyOffline
         {
             InitializeComponent();
             //pictureBox.Controls.Add(this.nameText);
+            //deleteButton.Visible = false;
+            //nameText.Visible = false;
         }
 
         private bool LoadThumb()
@@ -60,5 +62,16 @@ namespace bluebean.ShaderToyOffline
             }
         }
 
+        private void OnMouseEnter(object sender, EventArgs e)
+        {
+            //deleteButton.Visible = true;
+            //nameText.Visible = true;
+        }
+
+        private void OnMouseLeave(object sender, EventArgs e)
+        {
+            //deleteButton.Visible = false;
+            //nameText.Visible = false;
+        }
     }
 }

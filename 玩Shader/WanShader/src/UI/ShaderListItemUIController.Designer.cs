@@ -38,13 +38,13 @@
             // 
             this.nameText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.nameText.BackColor = System.Drawing.Color.DimGray;
+            this.nameText.BackColor = System.Drawing.Color.White;
             this.nameText.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.nameText.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.nameText.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.nameText.ForeColor = System.Drawing.Color.Black;
-            this.nameText.Location = new System.Drawing.Point(0, 94);
+            this.nameText.Location = new System.Drawing.Point(0, 138);
             this.nameText.Name = "nameText";
-            this.nameText.Size = new System.Drawing.Size(232, 25);
+            this.nameText.Size = new System.Drawing.Size(238, 25);
             this.nameText.TabIndex = 1;
             this.nameText.Text = "name";
             this.nameText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -63,13 +63,15 @@
             // 
             this.pictureBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.pictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox.Location = new System.Drawing.Point(0, -3);
+            this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(232, 138);
+            this.pictureBox.Size = new System.Drawing.Size(238, 143);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 4;
             this.pictureBox.TabStop = false;
             this.pictureBox.Click += new System.EventHandler(this.OnClick);
+            this.pictureBox.MouseEnter += new System.EventHandler(this.OnMouseEnter);
+            this.pictureBox.MouseLeave += new System.EventHandler(this.OnMouseLeave);
             // 
             // ShaderListItemUIController
             // 
@@ -80,7 +82,9 @@
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.pictureBox);
             this.Name = "ShaderListItemUIController";
-            this.Size = new System.Drawing.Size(238, 138);
+            this.Size = new System.Drawing.Size(238, 163);
+            this.MouseEnter += new System.EventHandler(this.OnMouseEnter);
+            this.MouseLeave += new System.EventHandler(this.OnMouseLeave);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
