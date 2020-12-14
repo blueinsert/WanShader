@@ -54,12 +54,20 @@ namespace bluebean.Diffuse
                     m_lastFpsRecordTime = now;
                 }
                 m_lastTickTime = now;
-                for (int i= 0;i < solver.dens0.Length; i++){
-                    //solver.dens0[i] = 0;
-                }
+
+                float r = 100;
                 if (m_isMouseDown)
                 {
-                    solver.dens0[(m_mouseY + 1) * (W + 2) + m_mouseX + 1] += 100.0f;
+                    for(int i = 0; i < H + 2; i++)
+                    {
+                        for(int j = 0; j < W + 2; j++)
+                        {
+                            if((m_mouseY+1-i)*(m_mouseY + 1 - i)+(m_mouseX+1-j)*(m_mouseX + 1 - j) < r*r)
+                            {
+                                solver.dens[(m_mouseY + 1) * (W + 2) + m_mouseX + 1] += 0.1f;
+                            }
+                        }
+                    }
                 }
                 solver.Step(0.01667f);
                 for (int i = 0; i < H; i++)

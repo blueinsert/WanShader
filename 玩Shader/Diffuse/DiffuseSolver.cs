@@ -44,6 +44,10 @@ namespace bluebean.Diffuse
             for(int i = 0; i < size; i++)
             {
                 d[i] += d0[i] * dt;
+                if (d[i] > 1.0f)
+                {
+                    d[i] = 1.0f;
+                }
                 //d0[i] = d[i];
             }
         }
@@ -51,10 +55,9 @@ namespace bluebean.Diffuse
         public void Step(float dt)
         {
             Console.WriteLine("DiffuseSolver:Step");
-            AddSource(ref dens,ref dens0, dt);
+            //AddSource(ref dens,ref dens0, dt);
             Swap(ref dens, ref dens0);
-            float a = dt * 0.005f * (W) * (H);
-            a = 1.0f;
+            float a = dt * 0.001f * (W) * (H);
             LinSolve(0,ref dens,ref dens0,a,1+4*a);
         }
 
@@ -84,8 +87,8 @@ namespace bluebean.Diffuse
                 {
                     for(int i = 1; i <= H; i++)
                     {
-                        d[Index(i, j)] = (d0[Index(i, j)] + (d[Index(i-1, j)] + d[Index(i+1, j)] + d[Index(i, j-1)] + d[Index(i, j+1)]) * a) / c;
-                        //d[Index(i, j)] = (d0[Index(i, j)] + (d0[Index(i - 1, j)] + d0[Index(i + 1, j)] + d0[Index(i, j - 1)] + d0[Index(i, j + 1)]) * a) / c;
+                        //d[Index(i, j)] = (d0[Index(i, j)] + (d[Index(i-1, j)] + d[Index(i+1, j)] + d[Index(i, j-1)] + d[Index(i, j+1)]) * a) / c;
+                        d[Index(i, j)] = (d0[Index(i, j)] + (d0[Index(i - 1, j)] + d0[Index(i + 1, j)] + d0[Index(i, j - 1)] + d0[Index(i, j + 1)]) * a) / c;
                     }
                 }
             }
